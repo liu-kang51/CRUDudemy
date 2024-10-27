@@ -7,3 +7,4 @@ Route::get('/', [CustomerController::class, 'index'])->name('home');
 
 
 Route::resource('customers', CustomerController::class);
+
