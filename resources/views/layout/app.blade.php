@@ -6,7 +6,7 @@
     <title>Customers</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
-
+    @vite('resources/css/app.css')
 </head>
 <body>
 
