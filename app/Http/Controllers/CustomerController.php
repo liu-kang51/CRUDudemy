@@ -6,14 +6,23 @@ use App\Http\Requests\CustomerStoreRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use File;
+
+use function Laravel\Prompts\search;
+
 class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::all();
+        // $customers = Customer::when($request->has('search'), function ($query) use ($request) {
+        //     $query->where('first_name', 'LIKE', "%$request->search%")->orWhere('last_name', 'LIKE', "%$request->search%")->orWhere('email', 'LIKE', "%$request->search%")->orWhere('phone', 'LIKE', "%$request->search%");
+        // })->get();
+        $customers = Customer::when($request->has('search'), function ($query) use ($request) {
+            $query->where('first_name', 'LIKE', "%$request->search%")->orWhere('last_name', 'LIKE', "%$request->search%")->orWhere('email', 'LIKE', "%$request->search%")->orWhere('phone', 'LIKE', "%$request->search%");
+        })->orderBy('id', $request->has('order') && $request->order =='asc' ? 'ASC' : 'DESC')->get();
+        
         return view ('customer.index', compact('customers'));
     }
 
@@ -103,5 +112,12 @@ class CustomerController extends Controller
         $customer->delete();
 
         return redirect()->route('customers.index');
+    }
+
+    function trashIndex(Request $request){
+        $customers = Customer::when($request->has('search'), function ($query) use ($request) {
+            $query->where('first_name', 'LIKE', "%$request->search%")->orWhere('last_name', 'LIKE', "%$request->search%")->orWhere('email', 'LIKE', "%$request->search%")->orWhere('phone', 'LIKE', "%$request->search%");
+        })->orderBy('id', $request->has('order') && $request->order =='asc' ? 'ASC' : 'DESC')->get();
+        return view('customer.trash', compact('customers'));
     }
 }

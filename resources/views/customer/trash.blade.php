@@ -9,7 +9,7 @@
             <div class="card-header">
                 <div class="row">
                 <div class="col-md-2">
-                    <a href="{{ route('customers.create') }}" class="btn" style="background-color: #4643d3; color: white;"><i class="fas fa-plus"></i> Create Customer</a>
+                    <a href="{{ route('customers.index') }}" class="btn" style="background-color: #4643d3; color: white;"><i class="fas fa-plus"></i>Back</a>
                 </div>
                 <div class="col-md-6">
                     <form action="{{ route('customers.index')}}" method="GET">
