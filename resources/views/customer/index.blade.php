@@ -30,7 +30,7 @@
                     </form>
                 </div> 
                 <div class="col-md-2 text-end">
-                    <a href="{{ route('customer.trash') }}" class="btn btn-dark"><i class="fas fa-trash-alt"></i> Trash</a>
+                    <a href="{{ route('customers.trash') }}" class="btn btn-dark"><i class="fas fa-trash-alt"></i> Trash</a>
                 </div>
                 </div>
 
@@ -68,7 +68,7 @@
                                 <a href="{{ route('customers.show', $customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1">
                                     <i class="far fa-eye"></i>
                                 </a>
-                                <a href="javascript:;" onclick="if(confirm('Are you sure??')) $('#form-{{ $customer->id }}').submit()" style="color: #2c2c2c;" class="ms-1 me-1">
+                                <a href="javascript:;" onclick="$('#form-{{ $customer->id }}').submit()" style="color: #2c2c2c;" class="ms-1 me-1">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                                 

@@ -4,7 +4,7 @@
 
 <div class="row justify-content-center mt-5">
     <div class="col-md-8">
-        <h3>Customers</h3>
+        <h3>Trash</h3>
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -29,9 +29,6 @@
                         </div>
                     </form>
                 </div> 
-                <div class="col-md-2 text-end">
-                    <a href="{{ route('customer.trash') }}" class="btn btn-dark"><i class="fas fa-trash-alt"></i> Trash</a>
-                </div>
                 </div>
 
             </div>
@@ -62,17 +59,15 @@
                         <td>{{$customer->about}}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('customers.edit', $customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1">
-                                    <i class="far fa-edit"></i>
-                                </a>
-                                <a href="{{ route('customers.show', $customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1">
-                                    <i class="far fa-eye"></i>
+
+                                <a href="{{ route('customers.restore', $customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1">
+                                   restore
                                 </a>
                                 <a href="javascript:;" onclick="if(confirm('Are you sure??')) $('#form-{{ $customer->id }}').submit()" style="color: #2c2c2c;" class="ms-1 me-1">
-                                    <i class="fas fa-trash-alt"></i>
+                                delete
                                 </a>
                                 
-                                <form id="form-{{ $customer->id }}" action="{{ route('customers.destroy', $customer->id) }}" method="POST" style="display: none;">
+                                <form id="form-{{ $customer->id }}" action="{{ route('customers.force.destory', $customer->id) }}" method="POST" style="display: none;">
                                     @method('DELETE')
                                     @csrf
                                 </form>
